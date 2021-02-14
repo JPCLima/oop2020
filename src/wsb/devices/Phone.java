@@ -8,16 +8,28 @@ import java.util.*;
 public class Phone extends Device {
     final Double screenSize;
     public List<App> applications;
+    public final OperatingSystem operatingSystem;
 
-    public Phone(String producer, String model, Double screenSize) {
+    public Phone(String producer, String model, Double screenSize, OperatingSystem operatingSystem) {
         super(producer, model);
         this.screenSize = screenSize;
+        this.operatingSystem = operatingSystem;
         applications = new LinkedList<>();
     }
 
     @Override
     public void turnOn() {
-        System.out.println("phone is turned on");
+        switch (this.operatingSystem){
+            case IOS:
+                System.out.println("Apple ON");
+                break;
+            case ANDROID:
+                System.out.println("Android ON");
+                break;
+            case WINDOWS_MOBILE:
+                System.out.println("Windows Mobile ON");
+                break;
+        }
     }
 
 

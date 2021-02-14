@@ -5,6 +5,7 @@ public abstract class Device {
         final public String model;
         public Double value;
 
+
     public Device(String producer, String model) {
         this.producer = producer;
         this.model = model;

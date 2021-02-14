@@ -2,7 +2,9 @@ package wsb.creatures;
 
 public class FarmAnimal extends Animal implements Edible{
 
-    public FarmAnimal(String species) {
+
+
+    public FarmAnimal(Species species) {
         super(species);
     }
 
