@@ -5,10 +5,8 @@ import wsb.creatures.Gender;
 import wsb.creatures.Human;
 import wsb.devices.*;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Main {
 
@@ -67,12 +65,22 @@ public class Main {
             System.out.println("Model: " + car + " | Producer: " + garageUnsort.get(car));
         }
 
-        // Create new map with the areas
+        //  Task 5
+        //  Create new map with the areas
         Map<Country, Double> countryAreaMap = new HashMap<>();
-        garageUnsort.put(Country.ARGENTINA.getCountryCode(), Country.ARGENTINA.getArea());
-        garageUnsort.put(Country.POLAND.getCountryCode(), Country.POLAND.getArea());
-        garageUnsort.put(Country.PORTUGAL.getCountryCode(), Country.PORTUGAL.getArea());
-        garageUnsort.put(Country.SPAIN.getCountryCode(), Country.SPAIN.getArea());
+        countryAreaMap.put(Country.ARGENTINA, 2780400.0);
+        countryAreaMap.put(Country.POLAND, 312696.0);
+        countryAreaMap.put(Country.PORTUGAL, 92226.0);
+        countryAreaMap.put(Country.SPAIN, 505992.0);
+
+        System.out.println("Largest Country: " +
+                Collections.max(countryAreaMap.entrySet(), Map.Entry.comparingByValue()).getKey()
+        );
+        System.out.println("Smallest Country: " +
+                Collections.min(countryAreaMap.entrySet(), Map.Entry.comparingByValue()).getKey()
+        );
+
+
 
         // Task 6
         HashMap<String, List<Device>> producers = new HashMap<>();
@@ -95,11 +103,6 @@ public class Main {
         // Find all devices produced by Ford and Siemens
         producers.get("Siemens").forEach(System.out::println);
         producers.get("Ford").forEach(System.out::println);
-
-
-
-
-
 
     }
 }
