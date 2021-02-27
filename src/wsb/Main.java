@@ -43,26 +43,20 @@ public class Main {
         //Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine)
         DieselCar car1 = new DieselCar("Kia", "Niro", 2009, 2.0);
         DieselCar car2 = new DieselCar("Mazda", "CX-9", 2009, 2.0);
-        ElectricCar car3 = new ElectricCar("Ford", "model Y", 2009);
-        ElectricCar car4 = new ElectricCar("Ford", "model P", 2009);
+        ElectricCar car3 = new ElectricCar("Ford", "Y-500", 2009);
+        ElectricCar car4 = new ElectricCar("Ford", "P-20", 2009);
 
-        Map<String, Double> garageUnsort = new HashMap<>();
-        garageUnsort.put(car1.model, 30000.0);
-        garageUnsort.put(car2.model, 10000.0);
-        garageUnsort.put(car3.model, 20000.0);
-        garageUnsort.put(car4.model, 140000.0);
+        Map<String, Car> garage = new HashMap<>();
+        garage.put(car1.model, car1);
+        garage.put(car2.model, car2);
+        garage.put(car3.model, car3);
+        garage.put(car4.model, car4);
 
-        System.out.println("Before sorting......");
-        System.out.println(garageUnsort);
-
-        // Get all the cars from garage
-        for (Map.Entry<String, Double> en : garageUnsort.entrySet()) {
-            System.out.println("Key = " + en.getKey() +
-                    ", Value = " + en.getValue());
-        }
-
-        for(String car: garageUnsort.keySet()){
-            System.out.println("Model: " + car + " | Producer: " + garageUnsort.get(car));
+        List<String> sortedKeys = new ArrayList<String>(garage.size());
+        sortedKeys.addAll(garage.keySet());
+        Collections.sort(sortedKeys);
+        for(String model: sortedKeys) {
+            System.out.println(garage.get(model));
         }
 
         //  Task 5
@@ -80,8 +74,6 @@ public class Main {
                 Collections.min(countryAreaMap.entrySet(), Map.Entry.comparingByValue()).getKey()
         );
 
-
-
         // Task 6
         HashMap<String, List<Device>> producers = new HashMap<>();
         List<Device> producedBySiemens = new ArrayList<Device>() {{
@@ -92,7 +84,7 @@ public class Main {
         List<Device> producedByHuawei = new ArrayList<Device>() {{
             add(new Phone("Huawei", "model Y", 5.2, OperatingSystem.ANDROID));
         }};
-        producers.put("Huawei", producedBySiemens);
+        producers.put("Huawei", producedByHuawei);
 
         List<Device> producedByFord = new ArrayList<Device>() {{
             add(car3);
