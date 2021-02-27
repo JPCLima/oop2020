@@ -17,7 +17,7 @@ public class Phone extends Device {
         applications = new LinkedList<>();
     }
 
-    @Override
+
     public void turnOn() {
         switch (this.operatingSystem){
             case IOS:

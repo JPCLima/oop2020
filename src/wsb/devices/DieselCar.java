@@ -1,8 +1,8 @@
 package wsb.devices;
 
 public class DieselCar extends Car {
-    public DieselCar(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine) {
-        super(producer, model, yearOfProduction, sizeOfAnEngine);
+    public DieselCar(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine, Double hoursePower, Double volume, Double milage) {
+        super(producer, model, yearOfProduction, sizeOfAnEngine, hoursePower, volume, milage);
     }
 
     @Override

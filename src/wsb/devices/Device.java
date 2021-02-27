@@ -11,8 +11,6 @@ public abstract class Device {
         this.model = model;
     }
 
-   public abstract void turnOn();
-
     public String getModel(){
         return this.model;
     }

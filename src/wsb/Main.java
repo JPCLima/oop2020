@@ -39,12 +39,11 @@ public class Main {
         System.out.printf("%.0f",Country.ARGENTINA.getGdpInPLN());
         System.out.println("\nCountry Language: " + Country.PORTUGAL.getLanguage());
 
-        // HashMap
-        //Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine)
-        DieselCar car1 = new DieselCar("Kia", "Niro", 2009, 2.0);
-        DieselCar car2 = new DieselCar("Mazda", "CX-9", 2009, 2.0);
-        ElectricCar car3 = new ElectricCar("Ford", "Y-500", 2009);
-        ElectricCar car4 = new ElectricCar("Ford", "P-20", 2009);
+        // Task 4
+        DieselCar car1 = new DieselCar("Kia", "Niro", 2009, 2.0, 1000.0, 150.0, 0.0);
+        DieselCar car2 = new DieselCar("Mazda", "CX-9", 2009, 2.0, 1000.0, 150.0, 0.0);
+        ElectricCar car3 = new ElectricCar("Ford", "Y-500", 2009, null, 1000.0, 105.0, 0.0);
+        ElectricCar car4 = new ElectricCar("Ford", "P-20", 2009, null, 1000.0, 105.0, 0.0 );
 
         Map<String, Car> garage = new HashMap<>();
         garage.put(car1.model, car1);

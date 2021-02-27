@@ -9,23 +9,53 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
     public final Integer yearOfProduction;
     public final Double sizeOfAnEngine;
     public String plates;
+    private Engine engine;
+    private boolean isRunning;
 
-    public Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine) {
+    public Car(String producer, String model, Integer yearOfProduction, Double sizeOfAnEngine, Double hoursePower, Double volume, Double milage) {
         super(producer, model);
         this.yearOfProduction = yearOfProduction;
         this.sizeOfAnEngine = sizeOfAnEngine;
-
+        this.isRunning = false;
+        this.engine = new Engine(hoursePower, volume, milage);
     }
 
     abstract public void refuel();
 
-    @Override
-    public void turnOn() {
-        System.out.println("car is ready to go");
+    private class Engine {
+        private Double horsePower;
+        private Double volume;
+        private Double milage;
+
+        public Engine(double horsePower, double volume, double milage){
+            this.horsePower = horsePower;
+            this.volume = volume;
+            this.milage = milage;
+        }
+
+        public void turnOn(){
+            isRunning = true;
+            System.out.println("Car turn ON");
+        }
+
+        public void turnOff(){
+            isRunning = false;
+            System.out.println("Car turn ON");
+        }
+
+    }
+
+
+    public void stopCar(){
+        engine.turnOn();
+    }
+
+    public void startCar(){
+        engine.turnOn();
     }
 
     public String toString() {
-        return this.producer + " " + this.model + " " + this.plates;
+        return this.producer + " " + this.model;
     }
 
     @Override
@@ -50,6 +80,4 @@ public abstract class Car extends Device implements Soldable, Comparable<Car> {
         seller.cash += price;
         System.out.println("great, transaction is done");
     }
-
-
 }
