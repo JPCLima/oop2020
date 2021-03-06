@@ -3,6 +3,7 @@ package wsb;
 import wsb.creatures.Animal;
 import wsb.creatures.Gender;
 import wsb.creatures.Human;
+import wsb.creatures.Pet;
 import wsb.devices.*;
 
 import java.util.*;
@@ -27,6 +28,7 @@ public class Main {
         // Create Animal
         Animal lion = new Animal(Animal.Species.CARNIVOROUS);
         Animal cow = new Animal(Animal.Species.HERBIVOROUS);
+        Animal tiger = new Animal(Animal.Species.CARNIVOROUS);
 
         // Feed the cow
         System.out.println("Weight cow before: " + cow.getWeight());
@@ -94,6 +96,37 @@ public class Main {
         // Find all devices produced by Ford and Siemens
         producers.get("Siemens").forEach(System.out::println);
         producers.get("Ford").forEach(System.out::println);
+
+        // Task 8
+        Animal cat1 = new Pet(Animal.Species.OMNIVORES);
+        Animal cat2 = new Pet(Animal.Species.OMNIVORES);
+        Animal dog1 = new Pet(Animal.Species.OMNIVORES);
+        Animal dog2 = new Pet(Animal.Species.OMNIVORES);
+
+        List<Animal> animalsAnonymous = new ArrayList<Animal>() {{
+            add(lion);
+            add(cow);
+            add(cat1);
+            add(cat2);
+            add(dog1);
+            add(dog2);
+        }};
+
+        Comparator<Animal> weightComparator =  new Comparator<Animal>() {
+            @Override
+            public int compare(Animal a1, Animal a2) {
+                return (int) (a1.getWeight() - a2.getWeight());
+            }
+            @Override
+            public boolean equals(Object obs){
+                return false;
+            }
+        };
+
+        animalsAnonymous.sort(weightComparator);
+        for(Animal animal: animalsAnonymous){
+            System.out.println(animal.getWeight());
+        }
 
     }
 }
