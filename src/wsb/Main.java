@@ -128,5 +128,14 @@ public class Main {
             System.out.println(animal.getWeight());
         }
 
+        // Task 9
+        Counter counter = new Counter(10);
+        Thread thread1 = new Thread(counter);
+        Thread thread2 = new Thread(counter);
+        Thread thread3 = new Thread(counter);
+        thread1.start();
+        thread2.start();
+        thread3.start();
+
     }
 }
