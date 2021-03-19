@@ -1,13 +1,13 @@
 package wsb;
 
-import wsb.creatures.Animal;
-import wsb.creatures.Gender;
-import wsb.creatures.Human;
-import wsb.creatures.Pet;
+import wsb.creatures.*;
 import wsb.devices.*;
 
 import java.util.*;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
 
@@ -26,9 +26,9 @@ public class Main {
         phone.turnOn();
 
         // Create Animal
-        Animal lion = new Animal(Animal.Species.CARNIVOROUS);
-        Animal cow = new Animal(Animal.Species.HERBIVOROUS);
-        Animal tiger = new Animal(Animal.Species.CARNIVOROUS);
+        Animal lion = new Animal(Animal.Species.CARNIVOROUS, 120.0, FoodType.MEET);
+        Animal cow = new Animal(Animal.Species.HERBIVOROUS, 80.0, FoodType.MEET);
+        Animal tiger = new Animal(Animal.Species.CARNIVOROUS, 100.0, FoodType.MEET);
 
         // Feed the cow
         System.out.println("Weight cow before: " + cow.getWeight());
@@ -128,14 +128,84 @@ public class Main {
             System.out.println(animal.getWeight());
         }
 
-        // Task 9
-        Counter counter = new Counter(10);
-        Thread thread1 = new Thread(counter);
-        Thread thread2 = new Thread(counter);
-        Thread thread3 = new Thread(counter);
-        thread1.start();
-        thread2.start();
-        thread3.start();
+//        // Task 9
+//        Counter counter = new Counter(10);
+//        Thread thread1 = new Thread(counter);
+//        Thread thread2 = new Thread(counter);
+//        Thread thread3 = new Thread(counter);
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+//
+//        // Task 10
+//        // One thread
+//        List<Integer> l1 = generateNewList(10);
+//        List<Integer> l2 = generateNewList(50);
+//        List<Integer> l3 = generateNewList(100);
+//        List<Integer> l4 = generateNewList(150);
+//
+//        CallableSorter sorter1 = new CallableSorter(l1);
+//        CallableSorter sorter2 = new CallableSorter(l2);
+//        CallableSorter sorter3 = new CallableSorter(l3);
+//        CallableSorter sorter4 = new CallableSorter(l4);
+//
+//        long startTime1 = System.currentTimeMillis();
+//        sorter1.call();
+//        sorter2.call();
+//        sorter3.call();
+//        sorter4.call();
+//        long endTime1 = System.currentTimeMillis();
+//        long duration1 = (endTime1 - startTime1);
+//        System.out.println("1 Thread: " + duration1);
+//
+//        // Four thread
+//        long startTime2 = System.currentTimeMillis();
+//        ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+//        ExecutorService executorService2 = Executors.newSingleThreadExecutor();
+//        ExecutorService executorService3 = Executors.newSingleThreadExecutor();
+//        ExecutorService executorService4 = Executors.newSingleThreadExecutor();
+//
+//        Future<List<Integer>> future1 = executorService1.submit(sorter1);
+//        Future<List<Integer>> future2 = executorService2.submit(sorter2);
+//        Future<List<Integer>> future3 = executorService3.submit(sorter3);
+//        Future<List<Integer>> future4 = executorService4.submit(sorter4);
+//
+//        List<Integer> r1 = future1.get();
+//        List<Integer> r2 = future2.get();
+//        List<Integer> r3 = future3.get();
+//        List<Integer> r4 = future4.get();
+//
+//        long endTime2 = System.currentTimeMillis();
+//        long duration2 = (endTime2 - startTime2);
+//        System.out.println("4 Thread: " + duration2);
+//        executorService1.shutdown();
+//        executorService2.shutdown();
+//        executorService3.shutdown();
+//        executorService4.shutdown();
 
+        // Task 11
+        List<Animal> animalsLambda = new ArrayList<Animal>() {{
+            add(tiger);
+            add(lion);
+            add(cow);
+            add(dog1);
+            add(dog2);
+        }};
+        animalsLambda.sort((Animal a, Animal b) -> (int)(a.getWeight() - b.getWeight()));
+
+        System.out.println("Sort Animals weight:");
+        for(Animal a: animalsLambda) {
+            System.out.println(a.getWeight());
+        }
+    }
+
+    static List<Integer> generateNewList(int size) {
+        List<Integer> list = new ArrayList<>();
+
+        for(int i = 0; i < size; i += 1) {
+            Integer randomNumber = (int)(Math.random() * size + 1);
+            list.add(randomNumber);
+        }
+        return list;
     }
 }
