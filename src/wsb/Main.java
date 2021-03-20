@@ -218,20 +218,11 @@ public class Main {
 
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         RunnableCounter subZero = new RunnableCounter();
-        subZero.finisher = new Finisher() {
-            @Override
-            public void finishHim(){
-                System.out.println("YOU ARE FROZEN");
-            }
-        };
+        subZero.finisher = () -> System.out.println("YOU ARE FROZEN");
+
 
         RunnableCounter scorpion = new RunnableCounter();
-        subZero.finisher = new Finisher() {
-            @Override
-            public void finishHim(){
-                System.out.println("YOU ARE POISONED");
-            }
-        };
+        subZero.finisher = () -> System.out.println("YOU ARE POISONED");
 
         executor.submit(subZero);
         executor.submit(scorpion);
