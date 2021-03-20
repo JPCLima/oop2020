@@ -1,10 +1,12 @@
 package wsb;
 
+import wsb.threads.CallableCounter;
 import wsb.threads.Finisher;
 import wsb.threads.RunnableCounter;
 
 import java.util.*;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class Main {
@@ -216,16 +218,31 @@ public class Main {
 //        // Finish the Thread
 //        executor.shutdown();
 
+        // Task 9 - c) and d)
+//        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+//        RunnableCounter subZero = new RunnableCounter();
+//        subZero.finisher = () -> System.out.println("YOU ARE FROZEN");
+//
+//
+//        RunnableCounter scorpion = new RunnableCounter();
+//        subZero.finisher = () -> System.out.println("YOU ARE POISONED");
+//
+//        executor.submit(subZero);
+//        executor.submit(scorpion);
+//
+//        executor.shutdown();
+
+        // Task 9 - e)
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
-        RunnableCounter subZero = new RunnableCounter();
-        subZero.finisher = () -> System.out.println("YOU ARE FROZEN");
 
+        CallableCounter cage = new CallableCounter();
+        CallableCounter liuKang = new CallableCounter();
 
-        RunnableCounter scorpion = new RunnableCounter();
-        subZero.finisher = () -> System.out.println("YOU ARE POISONED");
+        Future<Double> cageHP = executor.submit(cage);
+        Future<Double> liuaKangHP  = executor.submit(liuKang);
 
-        executor.submit(subZero);
-        executor.submit(scorpion);
+        System.out.println(cageHP.get());
+        System.out.println(liuaKangHP.get());
 
         executor.shutdown();
     }
