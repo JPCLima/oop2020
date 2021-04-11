@@ -6,6 +6,7 @@ import java.util.concurrent.Callable;
 public class CallableCounter implements Callable<Double> {
 
     static final public Integer START_FROM = 3;
+    public Finisher finisher;
 
     @Override
     public Double call() throws Exception {
@@ -13,6 +14,7 @@ public class CallableCounter implements Callable<Double> {
             System.out.println(i);
             Thread.sleep(1000);
         }
+        finisher.finishHim();
         return new Random().nextDouble();
     }
 }

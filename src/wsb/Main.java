@@ -232,10 +232,26 @@ public class Main {
 //
 //        executor.shutdown();
     // Task 9 - e)
+//        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+//
+//        CallableCounter callCounter1 = new CallableCounter();
+//        CallableCounter callCounter2 = new CallableCounter();
+//
+//        Future<Double> future1 = executor.submit(callCounter1);
+//        Future<Double> future2  = executor.submit(callCounter2);
+//
+//        System.out.println(future1.get());
+//        System.out.println(future2.get());
+//
+//        executor.shutdown();
+        // Task 9 - f)
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 
         CallableCounter callCounter1 = new CallableCounter();
         CallableCounter callCounter2 = new CallableCounter();
+
+        callCounter1.finisher = () -> System.out.println("Finisher 1");
+        callCounter2.finisher = () -> System.out.println("Finisher 2");
 
         Future<Double> future1 = executor.submit(callCounter1);
         Future<Double> future2  = executor.submit(callCounter2);
@@ -244,6 +260,7 @@ public class Main {
         System.out.println(future2.get());
 
         executor.shutdown();
+
 
     }
 
