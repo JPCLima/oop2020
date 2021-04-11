@@ -1,5 +1,11 @@
 package wsb;
 
+import wsb.creatures.Animal;
+import wsb.creatures.FoodType;
+import wsb.creatures.Gender;
+import wsb.creatures.Human;
+import wsb.devices.OperatingSystem;
+import wsb.devices.Phone;
 import wsb.threads.CallableCounter;
 import wsb.threads.Finisher;
 import wsb.threads.RunnableCounter;
@@ -245,21 +251,32 @@ public class Main {
 //
 //        executor.shutdown();
         // Task 9 - f)
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+//        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
+//
+//        CallableCounter callCounter1 = new CallableCounter();
+//        CallableCounter callCounter2 = new CallableCounter();
+//
+//        callCounter1.finisher = () -> System.out.println("Finisher 1");
+//        callCounter2.finisher = () -> System.out.println("Finisher 2");
+//
+//        Future<Double> future1 = executor.submit(callCounter1);
+//        Future<Double> future2  = executor.submit(callCounter2);
+//
+//        System.out.println(future1.get());
+//        System.out.println(future2.get());
+//
+//        executor.shutdown();
 
-        CallableCounter callCounter1 = new CallableCounter();
-        CallableCounter callCounter2 = new CallableCounter();
+        // Task 12
+        ObjectToSqlConverter converter = new ObjectToSqlConverter();
 
-        callCounter1.finisher = () -> System.out.println("Finisher 1");
-        callCounter2.finisher = () -> System.out.println("Finisher 2");
+        Human me = new Human(3, Gender.MAN);
+        Phone phone = new Phone("Huawei", "P20",  5.2, OperatingSystem.ANDROID);
+        Animal lion = new Animal(Animal.Species.CARNIVOROUS, 120.0, FoodType.MEET);
 
-        Future<Double> future1 = executor.submit(callCounter1);
-        Future<Double> future2  = executor.submit(callCounter2);
-
-        System.out.println(future1.get());
-        System.out.println(future2.get());
-
-        executor.shutdown();
+        System.out.println(converter.insert(me));
+        System.out.println(converter.insert(phone));
+        System.out.println(converter.insert(lion));
 
 
     }
