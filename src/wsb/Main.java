@@ -232,19 +232,7 @@ public class Main {
 //
 //        executor.shutdown();
 
-        // Task 9 - e)
-        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
 
-        CallableCounter cage = new CallableCounter();
-        CallableCounter liuKang = new CallableCounter();
-
-        Future<Double> cageHP = executor.submit(cage);
-        Future<Double> liuaKangHP  = executor.submit(liuKang);
-
-        System.out.println(cageHP.get());
-        System.out.println(liuaKangHP.get());
-
-        executor.shutdown();
     }
 
     static List<Integer> generateNewList(int size) {
