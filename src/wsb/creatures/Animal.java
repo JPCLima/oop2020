@@ -1,5 +1,7 @@
 package wsb.creatures;
 
+import wsb.Mapped;
+
 import java.io.File;
 import java.sql.SQLException;
 
@@ -9,16 +11,24 @@ public class Animal implements Feedable, Comparable<Animal> {
         OMNIVORES, CARNIVOROUS, HERBIVOROUS
     }
 
+    @Mapped
     private Double weight;
+    @Mapped
     public String name;
     File pic;
 
+
     private static Double OMNIVORES_WEIGHT = 4.0;
+
     private static Double CARNIVOROUS_WEIGHT = 39.2;
+
     private static Double HERBIVOROUS_WEIGHT = 5.3;
+
     private static Double DEFAULT_FEED_WEIGHT = 1.0;
 
+    @Mapped
     private final FoodType foodType;
+    @Mapped
     private final Species species;
 
     public Animal(Species species) {

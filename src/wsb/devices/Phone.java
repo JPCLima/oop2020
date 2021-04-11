@@ -1,13 +1,17 @@
 package wsb.devices;
 
 import wsb.App;
+import wsb.Mapped;
 import wsb.creatures.Human;
 
 import java.util.*;
 
 public class Phone extends Device {
+    @Mapped
     final Double screenSize;
+
     public List<App> applications;
+    @Mapped
     public final OperatingSystem operatingSystem;
 
     public Phone(String producer, String model, Double screenSize, OperatingSystem operatingSystem) {

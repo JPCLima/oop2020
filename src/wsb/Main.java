@@ -278,7 +278,6 @@ public class Main {
         System.out.println(converter.insert(phone));
         System.out.println(converter.insert(lion));
 
-
     }
 
     static List<Integer> generateNewList(int size) {

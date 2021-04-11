@@ -12,14 +12,16 @@ public class ObjectToSqlConverter {
         StringBuilder columns = new StringBuilder();
 
         for (Field field: object.getClass().getDeclaredFields()){
-            field.setAccessible(true);
-            try {
-                String tempVal = String.format("%s, ", field.get(object));
-                String tempCol = String.format("%s, ", field.getName());
-                values.append(tempVal);
-                columns.append(tempCol);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
+            if (field.isAnnotationPresent(Mapped.class)) {
+                field.setAccessible(true);
+                try {
+                    String tempVal = String.format("%s, ", field.get(object));
+                    String tempCol = String.format("%s, ", field.getName());
+                    values.append(tempVal);
+                    columns.append(tempCol);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
             }
         }
         String sql = String.format("INSERT INTO %s(%s) VALUES(%s)", object.getClass().getSimpleName(),columns.toString(), values.toString());

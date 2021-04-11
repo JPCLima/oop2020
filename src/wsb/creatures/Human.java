@@ -1,21 +1,32 @@
 package wsb.creatures;
 
+import wsb.Mapped;
 import wsb.devices.Car;
 import wsb.devices.Phone;
 
 public class Human extends Animal {
 
+    @Mapped
     public String firstName;
+    @Mapped
     public String lastName;
+    @Mapped
     public Pet pet;
+    @Mapped
     public Phone mobile;
+
     public Car[] garage;
+    @Mapped
     public final Gender gender;
+
 
     public Animal[] farm;
 
+    @Mapped
     protected String phoneNumber;
+    @Mapped
     private Double salary;
+    @Mapped
     public Double cash = 200.0;
 
     private static final int DEFAULT_FARM_SIZE = 3;
